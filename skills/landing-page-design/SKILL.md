@@ -15,6 +15,13 @@ This skill has two halves. **Part A** decides what the page says and how it is s
 
 Apply to all web UI work: landing pages, marketing sites, components, dashboards, prototypes, and design reviews. When a rule here conflicts with a framework default, this file wins. When the user's explicit prompt conflicts with a rule, the user wins.
 
+**KlivIQ override: order of precedence.**
+1. The user's prompt.
+2. The brand or client rules in the 00-CLAUDE Drive folder for that brand.
+3. This file.
+
+Wherever Part B gives a default (fonts, colors, backgrounds, hero treatment), a brand rule replaces it. This file never forces one house look on every brand.
+
 **Companion skill.** For upgrading an *existing* site rather than building a new one, use `redesign-existing-projects` ([github.com/elayadesign/redesign-skill](https://github.com/elayadesign/redesign-skill)). It diagnoses generic patterns and defers to this file for every concrete value.
 
 ---
@@ -69,7 +76,7 @@ If the user cannot answer, make a reasonable assumption, state it in one line, a
 11. Risk reversal, trial, cancel anytime, guarantee
 12. Final CTA, identical to the top
 
-Include the mandatory tagline reveal section from B11 somewhere in the mid page argument, typically right after the hero or after benefits.
+If B11 applies, include the tagline reveal section somewhere in the mid page argument, typically right after the hero or after benefits.
 
 ## A3. Layout selection
 
@@ -151,19 +158,26 @@ Every visual value must resolve through these rules instead of being invented ad
 
 ### Fonts
 
-**Use:** Geist, Manrope, Geist Mono, Poppins.
+**KlivIQ override: there is no fixed font list. Explore.**
 
-**Never use:** Inter, Roboto, Arial, Open Sans, Helvetica.
+Order of choice:
+1. The brand font named in 00-CLAUDE for this brand or client.
+2. If none, shortlist three distinct candidates that fit the brand's voice and audience. Give one line on why each fits, and ask Sri to pick. Ask in the same batch as the intake questions.
+3. Check the font covers every script on the page. Tamil or other Indic text needs a family that includes that script, confirmed on Google Fonts before use.
+
+**Avoid as a default, not a ban:** Inter, Roboto, Arial, Open Sans, Helvetica, and the faces AI tools reach for first (Geist, Manrope, Poppins, Space Grotesk, DM Sans, Plus Jakarta Sans). Use one only when the brand names it or Sri picks it from the shortlist.
+
+**Starting points to explore.** Verify availability and weights before use. Latin: Fraunces, Instrument Serif, Newsreader, Bricolage Grotesque, Schibsted Grotesk, Onest, Figtree, Hanken Grotesk. Tamil: Noto Sans Tamil, Noto Serif Tamil, Hind Madurai, Mukta Malar, Catamaran, Anek Tamil.
 
 **Never use italic fonts** anywhere in the interface.
 
-**One typeface per site.** Do not pair two fonts unless the prompt explicitly asks for it. Geist Mono is allowed alongside a primary font only for code, data, or numeric UI where a monospace is functionally required.
+**One typeface per site.** Do not pair two fonts unless the brand rules or the prompt ask for it. A monospace is allowed alongside a primary font only for code, data, or numeric UI where it is functionally required.
 
 **Never use ultra bold weights** (900 / black). Cap at semibold or bold.
 
 ### Copy rules
 
-**No hyphens in text.** Do not use `-` inside body copy, headings, or labels. Rewrite the phrase instead.
+**No em dashes, no needless hyphens.** Never use an em dash. Do not use a hyphen as punctuation inside body copy, headings, or labels; rewrite the phrase. Real compound words and proper names keep their hyphens (e-commerce, follow-up).
 
 **No orphaned words.** A single word must never sit alone on the last line. Apply `text-wrap: balance` for headings and `text-wrap: pretty` for body copy.
 
@@ -279,13 +293,15 @@ Example: an outer card at `rounded-2xl` (16px) with 8px of internal padding give
 
 ### Dark mode background colors
 
-Use only these:
+Default palette, used only when the brand rules define none:
 
 `#000000` · `#181818` · `#1F1F1F` · `#272727` · `#313131` · `#131209`
 
 ## B5. Hero section
 
 ### Heading color
+
+Default treatment. Brand rules replace it.
 
 - **Dark theme:** left to right gradient on the heading text, `#FFFFFF` → `#9B9B9B`.
 - **Light theme:** left to right gradient on the heading text, `#000000` → `#666666`.
@@ -337,8 +353,9 @@ Trigger reveals with `IntersectionObserver` or Framer Motion's `whileInView`. Ne
 Every piece of sample content should read like it came from a real product with real users.
 
 - **Write the copy.** No placeholder Latin, no "Your headline here". Draft real sentences in the product's voice.
-- **People.** Give testimonials and team members full, specific names that fit the product's audience and region. Never reuse one face for two people.
-- **Brands and logos.** Invent names that sound like they belong in the product's industry. A logistics tool's customers sound like logistics companies, not generic tech startups.
+- **Real sites never get invented people, brands, logos or testimonials.** Use real ones supplied by Sri or the client, or a marked placeholder such as `{{testimonial}}`. This overrides the two rules below.
+- **People (fictional prototypes only, labelled as samples).** Give testimonials and team members full, specific names that fit the product's audience and region. Never reuse one face for two people.
+- **Brands and logos (fictional prototypes only, labelled as samples).** Invent names that sound like they belong in the product's industry. A logistics tool's customers sound like logistics companies, not generic tech startups.
 - **Never invent facts.** On a real product's page, prices, guarantees, statistics, customer counts, testimonials, and logos must come from the user or a real source. When a fact is missing, use a clearly marked placeholder such as `{{price}}` or `{{testimonial}}` instead of making one up.
 - **Sample numbers.** In fictional demos and prototypes (where the invented names and brands above are fine), avoid suspiciously round figures. Pricing should look like real pricing, metrics should carry a decimal or an odd final digit, and dates across a list should vary.
 - **Banned filler words.** Do not write "revolutionize", "supercharge", "cutting edge", "effortless", "transform your workflow", "take it to the next level", "harness the power", or "world class". Say what the product does in plain terms instead.
@@ -374,9 +391,11 @@ Things that get forgotten and make a page feel unfinished:
 - A way back from every page
 - A check at 390px wide: no horizontal overflow, buttons keep their text inside, and the primary action is visible in the first screen
 
-## B11. Tagline reveal section (mandatory)
+## B11. Tagline reveal section (optional)
 
-Every landing page includes one large type section stating the core benefit or tagline, separate from the hero. It sits further down the page as its own moment, not stacked directly under the hero.
+KlivIQ override: use this when the brand and page suit it. Skip it for minimal conversion pages (layout C) and when the brand rules ask for a different treatment.
+
+When used, include one large type section stating the core benefit or tagline, separate from the hero. It sits further down the page as its own moment, not stacked directly under the hero.
 
 **Copy**
 - Minimum two lines of text.
@@ -422,8 +441,8 @@ Then build section by section per A6.
 - [ ] Layout type chosen deliberately
 
 **Visual**
-- [ ] Single approved typeface, no italics, no ultra bold
-- [ ] No hyphens in copy, no orphaned words
+- [ ] One typeface from the brand rules or Sri's pick, covering every script used, no italics, no ultra bold
+- [ ] No em dashes, no needless hyphens, no orphaned words
 - [ ] Every font size lands on a Tailwind scale step
 - [ ] Every text element uses a named text style (Heading, Title, Body, Button, Caption)
 - [ ] Every spacing value comes from the spacing table
@@ -432,7 +451,7 @@ Then build section by section per A6.
 - [ ] Hero heading and subheading capped at 680px with meaningful line breaks
 - [ ] Icons from Phosphor, Solar, or Iconamoon
 - [ ] Every transition uses the B7 base curve, scroll reveals use IntersectionObserver
-- [ ] Tagline reveal section present, minimum two lines, words activate one at a time on scroll
+- [ ] Tagline reveal section, if used: minimum two lines, words activate one at a time on scroll
 - [ ] No invented prices, stats, or testimonials; missing facts use marked placeholders
 - [ ] Checked at 390px with no overflow
 

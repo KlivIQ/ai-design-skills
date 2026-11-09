@@ -38,7 +38,7 @@ These are the designer's own rules for working in Figma. They sit on top of the 
 
 ## Typography
 
-- **Fonts:** any font is allowed. Use the one the user or brand names; check it with `figma.listAvailableFontsAsync()` before loading.
+- **Fonts:** any font is allowed. Use the one the user or the brand rules in 00-CLAUDE name; check it with `figma.listAvailableFontsAsync()` before loading. If none is named, shortlist three distinct candidates, ask Sri to pick, and avoid the faces AI tools default to. Confirm the font covers every script used (Tamil needs a family that includes it).
 - **One typeface per file** unless the user asks for a pair. Geist Mono is allowed beside the main font only for code, data or numbers.
 - **No italic styles. No weights above bold.**
 - **Sizes come from the Tailwind type scale only:** 12, 14, 16, 18, 20, 24, 30, 36, 48, 60, 72, 96, 128. If a size falls between steps, snap to the step below and take its line height.
@@ -53,7 +53,7 @@ These are the designer's own rules for working in Figma. They sit on top of the 
   - **Caption:** metadata, helper text, badges, timestamps, fine print.
 - **New styles.** If a project needs one, add the next number in its group (for example Body 7), built from a scale step. Never invent a new name or an off-scale size.
 - **Copy:**
-  - No hyphens inside text.
+  - No em dashes and no hyphens as punctuation inside text. Real compound words and proper names keep their hyphens.
   - No single word alone on a heading's last line. Break headings by hand at meaningful points (use a line break in the text, not a narrower frame).
   - The hero heading (Heading 1) has no periods, neither at the end nor between phrases. Split two ideas with a line break: `See the slop` / `Decide what to fix`, not `See the slop. Decide what to fix.`
 
